@@ -10,17 +10,12 @@ public final class ListPaginator<Response, Item>: ObservableObject {
         /// For APIs which use an offset-based system. Typically an offset based on the last fetched *item*'s index is passed to subsequent requests. For example, passing 0 for page one, receiving 20 results and then passing 20 for the next request and so on.
         case itemOffset
 
-        /// For APIs which use a cursor-based system for pagination. Typically, responses from these APIs return a cursor string which is sent up with future requests. In this case, you must provide the `cursorKeyPath` associated value with a keypath where the next cursor can be found within the `Response` object. ListPaginator will automatically retrieve the next cursor and provide the `requestPublisher` closure with it when the next request is made.
-        case cursor(cursorKeyPath: KeyPath<Response, String?>)
-
-        fileprivate var initialPage: PageInfo {
+        fileprivate var initialPage: Int {
             switch self {
             case let .pageIndex(startingFrom):
-                return .integer(startingFrom)
+                return startingFrom
             case .itemOffset:
-                return .integer(0)
-            case .cursor:
-                return .cursor(nil)
+                return 0
             }
         }
     }
@@ -30,10 +25,10 @@ public final class ListPaginator<Response, Item>: ObservableObject {
         /// A Combine publisher which will perform a network request with a given page.  The publisher is expected to:
         /// 1. Return a Swift `Result`. The data type is expected to match this class's generic `Response` type.
         /// 2. Never fail. This approach is considered so requests may be retried if they fail. A failable publisher has the downside of finishing on error and makes retrying slightly more complex.
-        case publisher((Any) -> AnyPublisher<Result<Response, Error>, Never>)
+        case publisher((Int) -> AnyPublisher<Result<Response, Error>, Never>)
 
         /// A simple closure which will perform a network request with a given page. This closure should perform its work and call back the provided completion block with the result of its network request.
-        case closure((Any, @escaping (Result<Response, Error>) -> Void) -> Void)
+        case closure((Int, @escaping (Result<Response, Error>) -> Void) -> Void)
     }
 
     /// Tracks the current pagination status. Is used internally for blocking duplicate requests but this may also be observed to display progress indicators and error messages within the client application.
@@ -64,21 +59,6 @@ public final class ListPaginator<Response, Item>: ObservableObject {
         }
     }
 
-    /// Signifies the page data which is to be fetched next. The case returned will depend on how ListPaginator's `strategy` was configured.
-    public enum PageInfo {
-        case integer(Int)
-        case cursor(String?)
-
-        var requestValue: Any {
-            switch self {
-            case let .integer(integer):
-                return integer
-            case let .cursor(cursor):
-                return cursor ?? ""
-            }
-        }
-    }
-
     /// An array of view-ready `Item`s. Observable.
     @Published public private(set) var results = [Item]()
 
@@ -102,7 +82,7 @@ public final class ListPaginator<Response, Item>: ObservableObject {
     /// The keypath which defines where in the response object the target item array can be found.
     public var responseItemsKeyPath: KeyPath<Response, [Item]>?
 
-    private var nextPage: PageInfo = .integer(0)
+    private var nextPage: Int = 0
     private var fetchCancellable: AnyCancellable?
 
     public init() {
@@ -120,13 +100,7 @@ public final class ListPaginator<Response, Item>: ObservableObject {
                     let items = response[keyPath: responseItemsKeyPath]
                     self.results.append(contentsOf: items)
 
-                    switch self.strategy {
-                    case .pageIndex, .itemOffset:
-                        self.status = .idle(hasMore: !items.isEmpty)
-                    case let .cursor(cursorKeyPath):
-                        self.status = .idle(hasMore: response[keyPath: cursorKeyPath] != nil)
-                    }
-
+                    self.status = .idle(hasMore: !items.isEmpty)
                     self.advancePage(response: response, itemsKeyPath: responseItemsKeyPath)
                     self.completionHandler?(result)
                 case let .failure(error):
@@ -136,15 +110,11 @@ public final class ListPaginator<Response, Item>: ObservableObject {
     }
 
     private func advancePage(response: Response, itemsKeyPath: KeyPath<Response, [Item]>) {
-        switch (strategy, nextPage) {
-        case (.pageIndex, let .integer(currentPage)):
-            nextPage = .integer(currentPage + 1)
-        case (.itemOffset, let .integer(currentOffset)):
-            nextPage = .integer(currentOffset + response[keyPath: itemsKeyPath].count)
-        case (let .cursor(cursorKeyPath), _):
-            nextPage = .cursor(response[keyPath: cursorKeyPath])
-        default:
-            assertionFailure("Invalid strategy setup. This shouldn't happen. File an issue please.")
+        switch strategy {
+        case .pageIndex:
+            nextPage += 1
+        case .itemOffset:
+            nextPage += response[keyPath: itemsKeyPath].count
         }
     }
 
@@ -155,11 +125,11 @@ public final class ListPaginator<Response, Item>: ObservableObject {
 
         switch requestProvider {
         case let .publisher(publisher):
-            return publisher(nextPage.requestValue)
+            return publisher(nextPage)
         case let .closure(closure):
             return Deferred {
                 Future<Result<Response, Error>, Never> { promise in
-                    closure(self.nextPage.requestValue, { result in
+                    closure(self.nextPage, { result in
                         promise(.success(result))
                     })
                 }
