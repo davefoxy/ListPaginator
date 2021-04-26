@@ -1,0 +1,13 @@
+use_frameworks!
+
+platform :ios, '9.0'
+
+target 'ListPaginator_Example' do
+  pod 'ListPaginator', :path => '../'
+
+  target 'ListPaginator_Tests' do
+    inherit! :search_paths
+
+    
+  end
+end
