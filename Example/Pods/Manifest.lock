@@ -1,0 +1,16 @@
+PODS:
+  - ListPaginator (1.0.0)
+
+DEPENDENCIES:
+  - ListPaginator (from `../`)
+
+EXTERNAL SOURCES:
+  ListPaginator:
+    :path: "../"
+
+SPEC CHECKSUMS:
+  ListPaginator: 6c25ebbfc4c7b5919b621bc533b895f2d2715931
+
+PODFILE CHECKSUM: 8f97278e594bce0cf9d7528b145cb77f364ffc17
+
+COCOAPODS: 1.9.1

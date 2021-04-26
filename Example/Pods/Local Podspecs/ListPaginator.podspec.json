@@ -1,0 +1,23 @@
+{
+  "name": "ListPaginator",
+  "version": "1.0.0",
+  "summary": "A short description of ListPaginator.",
+  "description": "TODO: Add long description of the pod here.",
+  "homepage": "https://github.com/davefoxy/ListPaginator",
+  "license": {
+    "type": "MIT",
+    "file": "LICENSE"
+  },
+  "authors": {
+    "David Fox": "davidfox@icloud.com"
+  },
+  "source": {
+    "git": "https://github.com/davefoxy/ListPaginator.git",
+    "tag": "1.0.0"
+  },
+  "social_media_url": "https://twitter.com/wowitzdave",
+  "platforms": {
+    "ios": "13.0"
+  },
+  "source_files": "ListPaginator/Classes/**/*"
+}

@@ -1,0 +1,6 @@
+framework module Pods_ListPaginator_Tests {
+  umbrella header "Pods-ListPaginator_Tests-umbrella.h"
+
+  export *
+  module * { export * }
+}

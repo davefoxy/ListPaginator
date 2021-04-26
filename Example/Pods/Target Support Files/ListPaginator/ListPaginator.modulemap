@@ -1,0 +1,6 @@
+framework module ListPaginator {
+  umbrella header "ListPaginator-umbrella.h"
+
+  export *
+  module * { export * }
+}
