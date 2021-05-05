@@ -1,15 +1,16 @@
 {
   "name": "ListPaginator",
   "version": "1.0.0",
-  "summary": "A short description of ListPaginator.",
-  "description": "TODO: Add long description of the pod here.",
+  "summary": "ListPaginator simplifies the fetching and state management for lists of data populated from a paginated endpoint.",
+  "description": "ListPaginator simplifies the fetching and state management for lists of data populated from a paginated endpoint.\n\nIts main aims are to maintain correct page offsets, fetch statuses and retain responses from paginated API endpoints.\n\nSupports integration via both Swift closures and Combine publishers.",
   "homepage": "https://github.com/davefoxy/ListPaginator",
+  "swift_versions": "5.0",
   "license": {
     "type": "MIT",
     "file": "LICENSE"
   },
   "authors": {
-    "David Fox": "davidfox@icloud.com"
+    "David Fox": ""
   },
   "source": {
     "git": "https://github.com/davefoxy/ListPaginator.git",
@@ -19,5 +20,6 @@
   "platforms": {
     "ios": "13.0"
   },
-  "source_files": "ListPaginator/Classes/**/*"
+  "source_files": "Sources/**/*.swift",
+  "swift_version": "5.0"
 }
