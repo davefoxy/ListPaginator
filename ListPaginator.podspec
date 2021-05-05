@@ -9,7 +9,7 @@
 Pod::Spec.new do |s|
   s.name             = 'ListPaginator'
   s.version          = '1.0.0'
-  s.summary          = 'A small helper class to manage fetching and presenting paginated content from a remote endpoint. Supports integration via both Swift closures and Combine publishers.'
+  s.summary          = 'ListPaginator simplifies the fetching and state management for lists of data populated from a paginated endpoint.'
 
 # This description is used to generate tags and improve search results.
 #   * Think: What does it do? Why did you write it? What is the focus?
@@ -18,11 +18,15 @@ Pod::Spec.new do |s|
 #   * Finally, don't worry about the indent, CocoaPods strips it!
 
   s.description      = <<-DESC
-  ListPaginator simplifies the fetching and state management for lists of data populated from a paginated endpoint. Its main aims are to maintain correct page offsets, fetch statuses and retain responses from paginated API endpoints.
+  ListPaginator simplifies the fetching and state management for lists of data populated from a paginated endpoint.
+
+  Its main aims are to maintain correct page offsets, fetch statuses and retain responses from paginated API endpoints.
+
+  Supports integration via both Swift closures and Combine publishers.
                        DESC
 
   s.homepage         = 'https://github.com/davefoxy/ListPaginator'
-  # s.screenshots     = 'www.example.com/screenshots_1', 'www.example.com/screenshots_2'
+  s.swift_versions   = '5.0'
   s.license          = { :type => 'MIT', :file => 'LICENSE' }
   s.author           = { 'David Fox' => '' }
   s.source           = { :git => 'https://github.com/davefoxy/ListPaginator.git', :tag => s.version.to_s }
@@ -31,12 +35,4 @@ Pod::Spec.new do |s|
   s.ios.deployment_target = '13.0'
 
   s.source_files = 'ListPaginator/Classes/**/*'
-  
-  # s.resource_bundles = {
-  #   'ListPaginator' => ['ListPaginator/Assets/*.png']
-  # }
-
-  # s.public_header_files = 'Pod/Classes/**/*.h'
-  # s.frameworks = 'UIKit', 'MapKit'
-  # s.dependency 'AFNetworking', '~> 2.3'
 end
