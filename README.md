@@ -55,12 +55,18 @@ The demo application shows usage for both Combine/SwiftUI and UIKit-based applic
 
 ## Installation
 
+### Cocoapods
+
 ListPaginator is available through [CocoaPods](https://cocoapods.org). To install
 it, simply add the following line to your Podfile:
 
 ```ruby
 pod 'ListPaginator'
 ```
+
+### Swift Package Manager (SPM)
+
+You can integrate ListPaginator via SPM. Within Xcode, choose "File" -> "Swift Packages" -> "Add Package Dependency" and paste in this repo's URL: https://github.com/davefoxy/ListPaginator
 
 ## Acknowledgements
 
