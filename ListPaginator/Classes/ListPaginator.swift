@@ -1,7 +1,20 @@
 import Foundation
 import Combine
 
-public final class ListPaginator<Response, Item>: ObservableObject {
+/**
+ ListPaginator simplifies the fetching and state management for lists of data populated from a paginated endpoint. It's main aims are to maintain correct page offsets, fetch statuses and retain responses from paginated API endpoints.
+
+ Implementation typically looks as follows:
+ 1. Instantiate and retain an instance, defining the `Response` and `Item` generic types. The main initializer also takes a `PagingStrategy` object which defines the behavior of your API and a keypath which shows `ListPaginator` where to find your `Item`s within the defined `Response` object.
+ 2. Tell `ListPaginator` how to fetch results by assigning its `requestProvider: RequestProvider` property. You can provide a standard closure or, for Combine-driven applications, a publisher which performs the appropriate network operation based on the page or offset number provided.
+ 3. Call `fetchMoreIfNeeded.send()` or bind to the publisher when the client wants to fetch new data. This is typically called when the user scrolls near the end of a collection or table view.
+ 4. For SwiftUI and Combine-driven applications, bind your UI to the `results: [item]` publisher. For other implementations, assign a closure to the `completionHandler` property and refresh your view as necessary.
+
+ Integration via either standard Swift closures and Combine publishers is possible. The `results: [Item]` array contains all objects fetched so-far and is marked as `@Published` for integration with SwiftUI. The `Status` property indicates the current pagination status the instance is in and is also `@Published`.
+ - Parameter Response: A `Decodable` object type which is fetched from the server and contains the array of items.
+ - Parameter Item: The object type of the items to be paginated.
+ */
+public final class ListPaginator<Response: Decodable, Item>: ObservableObject {
     /// Defines how the paginator should generate page numbers for building network requests. This will be based on how the target API works with paging.
     public enum PagingStrategy {
         /// For APIs which use a page index-based system. Typically an incrementing integer is sent as part of the request parameters. The  `startingFrom` associated value should provide the initial page number. You should typically pass `0` or `1` to define whether your endpoint is 0 or 1-based.
@@ -10,7 +23,7 @@ public final class ListPaginator<Response, Item>: ObservableObject {
         /// For APIs which use an offset-based system. Typically an offset based on the last fetched *item*'s index is passed to subsequent requests. For example, passing 0 for page one, receiving 20 results and then passing 20 for the next request and so on.
         case itemOffset
 
-        fileprivate var initialPage: Int {
+        fileprivate var initialOffset: Int {
             switch self {
             case let .pageIndex(startingFrom):
                 return startingFrom
@@ -45,6 +58,16 @@ public final class ListPaginator<Response, Item>: ObservableObject {
         /// An error occured during the last request. This status may be used to display an error message and retry control in the client application.
         case error(Error)
 
+        /// A convenience property which unwraps the `Error` from the `error(Error)` case.
+        public var error: Error? {
+            switch self {
+            case let .error(error):
+                return error
+            case .initial, .idle, .fetching:
+                return nil
+            }
+        }
+
         fileprivate var mayFetchMore: Bool {
             switch self {
             case .initial:
@@ -72,50 +95,50 @@ public final class ListPaginator<Response, Item>: ObservableObject {
     public let fetchMoreIfNeeded = PassthroughSubject<Void, Never>()
 
     /// Defines how requests are constructed. See the `PagingStrategy` documentation for details.
-    public var strategy: PagingStrategy = .pageIndex(startingFrom: 0) {
-        didSet { reset() }
-    }
+    private let strategy: PagingStrategy
 
     /// A property which defines how the client application will provide data for ListPaginator to consume. ListPaginator currently supports network requests via either a Combine publisher or a simple Swift closure. Both are expected to return a Swift `Result` with the success data type matching this class's generic `Response` type. See the `RequestProvider` documentation for more details.
     public var requestProvider: RequestProvider?
 
     /// The keypath which defines where in the response object the target item array can be found.
-    public var responseItemsKeyPath: KeyPath<Response, [Item]>?
+    private let responseItemsKeyPath: KeyPath<Response, [Item]>
 
-    private var nextPage: Int = 0
+    private var nextOffset: Int = 0
     private var fetchCancellable: AnyCancellable?
 
-    public init() {
+    /// Initializer for `ListPaginator`. Provide it with the `PagingStrategy` used by your application and the property keypath where your `Item`s can be found within each `Response`.
+    public init(strategy: PagingStrategy, responseItemsKeyPath: KeyPath<Response, [Item]>) {
+        self.strategy = strategy
+        self.responseItemsKeyPath = responseItemsKeyPath
+
         fetchCancellable = fetchMoreIfNeeded
             .filter { self.status.mayFetchMore }
             .map { self.status = .fetching }
             .flatMap { self.requestPublisher }
             .sink(receiveValue: { result in
-                guard let responseItemsKeyPath = self.responseItemsKeyPath else {
-                    fatalError("Missing configuration for responseItemsKeyPath property. This is required to inform ListPaginator how to find individual items within a response.")
-                }
-
                 switch result {
                 case let .success(response):
+                    // Append new items
                     let items = response[keyPath: responseItemsKeyPath]
                     self.results.append(contentsOf: items)
 
+                    // Update status
                     self.status = .idle(hasMore: !items.isEmpty)
-                    self.advancePage(response: response, itemsKeyPath: responseItemsKeyPath)
-                    self.completionHandler?(result)
+
+                    // Move to new page offset
+                    switch self.strategy {
+                    case .pageIndex:
+                        self.nextOffset += 1
+                    case .itemOffset:
+                        self.nextOffset += response[keyPath: responseItemsKeyPath].count
+                    }
                 case let .failure(error):
                     self.status = .error(error)
                 }
-            })
-    }
 
-    private func advancePage(response: Response, itemsKeyPath: KeyPath<Response, [Item]>) {
-        switch strategy {
-        case .pageIndex:
-            nextPage += 1
-        case .itemOffset:
-            nextPage += response[keyPath: itemsKeyPath].count
-        }
+                // Call optional completion handler
+                self.completionHandler?(result)
+            })
     }
 
     private var requestPublisher: AnyPublisher<Result<Response, Error>, Never> {
@@ -125,11 +148,11 @@ public final class ListPaginator<Response, Item>: ObservableObject {
 
         switch requestProvider {
         case let .publisher(publisher):
-            return publisher(nextPage)
+            return publisher(nextOffset)
         case let .closure(closure):
             return Deferred {
                 Future<Result<Response, Error>, Never> { promise in
-                    closure(self.nextPage, { result in
+                    closure(self.nextOffset, { result in
                         promise(.success(result))
                     })
                 }
@@ -142,6 +165,6 @@ public final class ListPaginator<Response, Item>: ObservableObject {
     public func reset() {
         results.removeAll()
         status = .initial
-        nextPage = strategy.initialPage
+        nextOffset = strategy.initialOffset
     }
 }

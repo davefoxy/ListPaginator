@@ -9,7 +9,7 @@
 Pod::Spec.new do |s|
   s.name             = 'ListPaginator'
   s.version          = '1.0.0'
-  s.summary          = 'A short description of ListPaginator.'
+  s.summary          = 'A small helper class to manage fetching and presenting paginated content from a remote endpoint. Supports integration via both Swift closures and Combine publishers.'
 
 # This description is used to generate tags and improve search results.
 #   * Think: What does it do? Why did you write it? What is the focus?
@@ -24,7 +24,7 @@ TODO: Add long description of the pod here.
   s.homepage         = 'https://github.com/davefoxy/ListPaginator'
   # s.screenshots     = 'www.example.com/screenshots_1', 'www.example.com/screenshots_2'
   s.license          = { :type => 'MIT', :file => 'LICENSE' }
-  s.author           = { 'David Fox' => 'davidfox@icloud.com' }
+  s.author           = { 'David Fox' => '' }
   s.source           = { :git => 'https://github.com/davefoxy/ListPaginator.git', :tag => s.version.to_s }
   s.social_media_url = 'https://twitter.com/wowitzdave'
 

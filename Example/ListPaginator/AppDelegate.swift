@@ -1,11 +1,3 @@
-//
-//  AppDelegate.swift
-//  ListPaginator
-//
-//  Created by David Fox on 04/26/2021.
-//  Copyright (c) 2021 David Fox. All rights reserved.
-//
-
 import UIKit
 
 @UIApplicationMain

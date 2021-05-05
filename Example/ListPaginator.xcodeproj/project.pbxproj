@@ -8,8 +8,14 @@
 
 /* Begin PBXBuildFile section */
 		1895F8FD7A26193340F41C10 /* Pods_ListPaginator_Tests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 00967ABC36408A71A4C3DE4D /* Pods_ListPaginator_Tests.framework */; };
+		52715267263784B90024155A /* UIKitExampleViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52715266263784B90024155A /* UIKitExampleViewController.swift */; };
+		5271526D2637854A0024155A /* SwiftUIExampleView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5271526C2637854A0024155A /* SwiftUIExampleView.swift */; };
+		52715274263786660024155A /* PassengersRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52715271263786660024155A /* PassengersRequest.swift */; };
+		52715275263786660024155A /* Request.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52715272263786660024155A /* Request.swift */; };
+		5271527A263786A00024155A /* Utilities.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52715279263786A00024155A /* Utilities.swift */; };
+		52715288263AA4050024155A /* DebugViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52715287263AA4050024155A /* DebugViewController.swift */; };
 		607FACD61AFB9204008FA782 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 607FACD51AFB9204008FA782 /* AppDelegate.swift */; };
-		607FACD81AFB9204008FA782 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 607FACD71AFB9204008FA782 /* ViewController.swift */; };
+		607FACD81AFB9204008FA782 /* SwiftUIExampleViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 607FACD71AFB9204008FA782 /* SwiftUIExampleViewController.swift */; };
 		607FACDB1AFB9204008FA782 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 607FACD91AFB9204008FA782 /* Main.storyboard */; };
 		607FACDD1AFB9204008FA782 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 607FACDC1AFB9204008FA782 /* Images.xcassets */; };
 		607FACE01AFB9204008FA782 /* LaunchScreen.xib in Resources */ = {isa = PBXBuildFile; fileRef = 607FACDE1AFB9204008FA782 /* LaunchScreen.xib */; };
@@ -33,10 +39,16 @@
 		1C006EC13ED028F8A2FA0ABA /* ListPaginator.podspec */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text; name = ListPaginator.podspec; path = ../ListPaginator.podspec; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.ruby; };
 		2B3DBF0AD2D9D04125385FA4 /* Pods-ListPaginator_Tests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ListPaginator_Tests.release.xcconfig"; path = "Target Support Files/Pods-ListPaginator_Tests/Pods-ListPaginator_Tests.release.xcconfig"; sourceTree = "<group>"; };
 		2D59A406CBF879BB7F2C27CB /* Pods-ListPaginator_Example.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ListPaginator_Example.release.xcconfig"; path = "Target Support Files/Pods-ListPaginator_Example/Pods-ListPaginator_Example.release.xcconfig"; sourceTree = "<group>"; };
+		52715266263784B90024155A /* UIKitExampleViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIKitExampleViewController.swift; sourceTree = "<group>"; };
+		5271526C2637854A0024155A /* SwiftUIExampleView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SwiftUIExampleView.swift; sourceTree = "<group>"; };
+		52715271263786660024155A /* PassengersRequest.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PassengersRequest.swift; sourceTree = "<group>"; };
+		52715272263786660024155A /* Request.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Request.swift; sourceTree = "<group>"; };
+		52715279263786A00024155A /* Utilities.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Utilities.swift; sourceTree = "<group>"; };
+		52715287263AA4050024155A /* DebugViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DebugViewController.swift; sourceTree = "<group>"; };
 		607FACD01AFB9204008FA782 /* ListPaginator_Example.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = ListPaginator_Example.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		607FACD41AFB9204008FA782 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		607FACD51AFB9204008FA782 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
-		607FACD71AFB9204008FA782 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
+		607FACD71AFB9204008FA782 /* SwiftUIExampleViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SwiftUIExampleViewController.swift; sourceTree = "<group>"; };
 		607FACDA1AFB9204008FA782 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		607FACDC1AFB9204008FA782 /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Images.xcassets; sourceTree = "<group>"; };
 		607FACDF1AFB9204008FA782 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = Base; path = Base.lproj/LaunchScreen.xib; sourceTree = "<group>"; };
@@ -69,6 +81,40 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		52715270263786660024155A /* API */ = {
+			isa = PBXGroup;
+			children = (
+				52715271263786660024155A /* PassengersRequest.swift */,
+				52715272263786660024155A /* Request.swift */,
+			);
+			path = API;
+			sourceTree = "<group>";
+		};
+		5271527F263787420024155A /* SwiftUIExample */ = {
+			isa = PBXGroup;
+			children = (
+				607FACD71AFB9204008FA782 /* SwiftUIExampleViewController.swift */,
+				5271526C2637854A0024155A /* SwiftUIExampleView.swift */,
+			);
+			path = SwiftUIExample;
+			sourceTree = "<group>";
+		};
+		52715282263790AC0024155A /* UIKitExample */ = {
+			isa = PBXGroup;
+			children = (
+				52715266263784B90024155A /* UIKitExampleViewController.swift */,
+			);
+			path = UIKitExample;
+			sourceTree = "<group>";
+		};
+		5271528D263AA5240024155A /* Debug */ = {
+			isa = PBXGroup;
+			children = (
+				52715287263AA4050024155A /* DebugViewController.swift */,
+			);
+			path = Debug;
+			sourceTree = "<group>";
+		};
 		607FACC71AFB9204008FA782 = {
 			isa = PBXGroup;
 			children = (
@@ -94,7 +140,11 @@
 			isa = PBXGroup;
 			children = (
 				607FACD51AFB9204008FA782 /* AppDelegate.swift */,
-				607FACD71AFB9204008FA782 /* ViewController.swift */,
+				52715279263786A00024155A /* Utilities.swift */,
+				52715270263786660024155A /* API */,
+				5271527F263787420024155A /* SwiftUIExample */,
+				52715282263790AC0024155A /* UIKitExample */,
+				5271528D263AA5240024155A /* Debug */,
 				607FACD91AFB9204008FA782 /* Main.storyboard */,
 				607FACDC1AFB9204008FA782 /* Images.xcassets */,
 				607FACDE1AFB9204008FA782 /* LaunchScreen.xib */,
@@ -331,7 +381,13 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				607FACD81AFB9204008FA782 /* ViewController.swift in Sources */,
+				52715274263786660024155A /* PassengersRequest.swift in Sources */,
+				52715275263786660024155A /* Request.swift in Sources */,
+				52715288263AA4050024155A /* DebugViewController.swift in Sources */,
+				52715267263784B90024155A /* UIKitExampleViewController.swift in Sources */,
+				5271526D2637854A0024155A /* SwiftUIExampleView.swift in Sources */,
+				607FACD81AFB9204008FA782 /* SwiftUIExampleViewController.swift in Sources */,
+				5271527A263786A00024155A /* Utilities.swift in Sources */,
 				607FACD61AFB9204008FA782 /* AppDelegate.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -482,7 +538,7 @@
 				IPHONEOS_DEPLOYMENT_TARGET = 13.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				MODULE_NAME = ExampleApp;
-				PRODUCT_BUNDLE_IDENTIFIER = "org.cocoapods.demo.$(PRODUCT_NAME:rfc1034identifier)";
+				PRODUCT_BUNDLE_IDENTIFIER = "org.listpaginator.demo.$(PRODUCT_NAME:rfc1034identifier)";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_SWIFT3_OBJC_INFERENCE = Default;
 				SWIFT_VERSION = 4.0;
@@ -498,7 +554,7 @@
 				IPHONEOS_DEPLOYMENT_TARGET = 13.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				MODULE_NAME = ExampleApp;
-				PRODUCT_BUNDLE_IDENTIFIER = "org.cocoapods.demo.$(PRODUCT_NAME:rfc1034identifier)";
+				PRODUCT_BUNDLE_IDENTIFIER = "org.listpaginator.demo.$(PRODUCT_NAME:rfc1034identifier)";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_SWIFT3_OBJC_INFERENCE = Default;
 				SWIFT_VERSION = 4.0;
