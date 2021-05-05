@@ -1,0 +1,149 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <title>Classes  Reference</title>
+    <link rel="stylesheet" type="text/css" href="css/jazzy.css" />
+    <link rel="stylesheet" type="text/css" href="css/highlight.css" />
+    <meta charset='utf-8'>
+    <script src="js/jquery.min.js" defer></script>
+    <script src="js/jazzy.js" defer></script>
+    
+    <script src="js/lunr.min.js" defer></script>
+    <script src="js/typeahead.jquery.js" defer></script>
+    <script src="js/jazzy.search.js" defer></script>
+  </head>
+  <body>
+    <a name="//apple_ref/swift/Section/Classes" class="dashAnchor"></a>
+    <a title="Classes  Reference"></a>
+    <header>
+      <div class="content-wrapper">
+        <p><a href="index.html">ListPaginator 1.0.0 Docs</a> (100% documented)</p>
+        <p class="header-right">
+          <form role="search" action="search.json">
+            <input type="text" placeholder="Search documentation" data-typeahead>
+          </form>
+        </p>
+      </div>
+    </header>
+    <div class="content-wrapper">
+      <p id="breadcrumbs">
+        <a href="index.html">ListPaginator Reference</a>
+        <img id="carat" src="img/carat.png" />
+        Classes  Reference
+      </p>
+    </div>
+    <div class="content-wrapper">
+      <nav class="sidebar">
+        <ul class="nav-groups">
+          <li class="nav-group-name">
+            <a href="Classes.html">Classes</a>
+            <ul class="nav-group-tasks">
+              <li class="nav-group-task">
+                <a href="Classes/ListPaginator.html">ListPaginator</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="Classes/ListPaginator/PagingStrategy.html">– PagingStrategy</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="Classes/ListPaginator/RequestProvider.html">– RequestProvider</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="Classes/ListPaginator/Status.html">– Status</a>
+              </li>
+            </ul>
+          </li>
+        </ul>
+      </nav>
+      <article class="main-content">
+        <section>
+          <section class="section">
+            <h1>Classes</h1>
+            <p>The following classes are available globally.</p>
+
+          </section>
+          <section class="section task-group-section">
+            <div class="task-group">
+              <ul>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:13ListPaginatorAAC"></a>
+                    <a name="//apple_ref/swift/Class/ListPaginator" class="dashAnchor"></a>
+                    <a class="token" href="#/s:13ListPaginatorAAC">ListPaginator</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>ListPaginator simplifies the fetching and state management for lists of data populated from a paginated endpoint. It&rsquo;s main aims are to maintain correct page offsets, fetch statuses and retain responses from paginated API endpoints.</p>
+
+<p>Implementation typically looks as follows:</p>
+
+<ol>
+<li>Instantiate and retain an instance, defining the <code>Response</code> and <code>Item</code> generic types. The main initializer also takes a <code>PagingStrategy</code> object which defines the behavior of your API and a keypath which shows <code>ListPaginator</code> where to find your <code>Item</code>s within the defined <code>Response</code> object.</li>
+<li>Tell <code>ListPaginator</code> how to fetch results by assigning its <code>requestProvider: RequestProvider</code> property. You can provide a standard closure or, for Combine-driven applications, a publisher which performs the appropriate network operation based on the page or offset number provided.</li>
+<li>Call <code>fetchMoreIfNeeded.send()</code> or bind to the publisher when the client wants to fetch new data. This is typically called when the user scrolls near the end of a collection or table view.</li>
+<li>For SwiftUI and Combine-driven applications, bind your UI to the <code>results: [item]</code> publisher. For other implementations, assign a closure to the <code>completionHandler</code> property and refresh your view as necessary.</li>
+</ol>
+
+<p>Integration via either standard Swift closures and Combine publishers is possible. The <code>results: [Item]</code> array contains all objects fetched so-far and is marked as <code>@Published</code> for integration with SwiftUI. The <code>Status</code> property indicates the current pagination status the instance is in and is also <code>@Published</code>.</p>
+
+                        <a href="Classes/ListPaginator.html" class="slightly-smaller">See more</a>
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight swift"><code><span class="kd">public</span> <span class="kd">final</span> <span class="kd">class</span> <span class="kt">ListPaginator</span><span class="o">&lt;</span><span class="kt">Response</span><span class="p">,</span> <span class="kt">Item</span><span class="o">&gt;</span> <span class="p">:</span> <span class="kt">ObservableObject</span> <span class="k">where</span> <span class="kt">Response</span> <span class="p">:</span> <span class="kt">Decodable</span></code></pre>
+
+                        </div>
+                      </div>
+                      <div>
+                        <h4>Parameters</h4>
+                        <table class="graybox">
+                          <tbody>
+                            <tr>
+                              <td>
+                                <code>
+                                <em>Response</em>
+                                </code>
+                              </td>
+                              <td>
+                                <div>
+                                  <p>A <code>Decodable</code> object type which is fetched from the server and contains the array of items.</p>
+                                </div>
+                              </td>
+                            </tr>
+                            <tr>
+                              <td>
+                                <code>
+                                <em>Item</em>
+                                </code>
+                              </td>
+                              <td>
+                                <div>
+                                  <p>The object type of the items to be paginated.</p>
+                                </div>
+                              </td>
+                            </tr>
+                          </tbody>
+                        </table>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+              </ul>
+            </div>
+          </section>
+        </section>
+        <section id="footer">
+          <p>&copy; 2021 <a class="link" href="https://github.com/davefoxy/ListPaginator" target="_blank" rel="external">David Fox</a>. All rights reserved. (Last updated: 2021-05-05)</p>
+          <p>Generated by <a class="link" href="https://github.com/realm/jazzy" target="_blank" rel="external">jazzy ♪♫ v0.13.6</a>, a <a class="link" href="https://realm.io" target="_blank" rel="external">Realm</a> project.</p>
+        </section>
+      </article>
+    </div>
+  </body>
+</div>
+</html>

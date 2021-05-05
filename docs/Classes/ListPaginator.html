@@ -1,0 +1,403 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <title>ListPaginator Class Reference</title>
+    <link rel="stylesheet" type="text/css" href="../css/jazzy.css" />
+    <link rel="stylesheet" type="text/css" href="../css/highlight.css" />
+    <meta charset='utf-8'>
+    <script src="../js/jquery.min.js" defer></script>
+    <script src="../js/jazzy.js" defer></script>
+    
+    <script src="../js/lunr.min.js" defer></script>
+    <script src="../js/typeahead.jquery.js" defer></script>
+    <script src="../js/jazzy.search.js" defer></script>
+  </head>
+  <body>
+    <a name="//apple_ref/swift/Class/ListPaginator" class="dashAnchor"></a>
+    <a title="ListPaginator Class Reference"></a>
+    <header>
+      <div class="content-wrapper">
+        <p><a href="../index.html">ListPaginator 1.0.0 Docs</a> (100% documented)</p>
+        <p class="header-right">
+          <form role="search" action="../search.json">
+            <input type="text" placeholder="Search documentation" data-typeahead>
+          </form>
+        </p>
+      </div>
+    </header>
+    <div class="content-wrapper">
+      <p id="breadcrumbs">
+        <a href="../index.html">ListPaginator Reference</a>
+        <img id="carat" src="../img/carat.png" />
+        ListPaginator Class Reference
+      </p>
+    </div>
+    <div class="content-wrapper">
+      <nav class="sidebar">
+        <ul class="nav-groups">
+          <li class="nav-group-name">
+            <a href="../Classes.html">Classes</a>
+            <ul class="nav-group-tasks">
+              <li class="nav-group-task">
+                <a href="../Classes/ListPaginator.html">ListPaginator</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Classes/ListPaginator/PagingStrategy.html">– PagingStrategy</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Classes/ListPaginator/RequestProvider.html">– RequestProvider</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Classes/ListPaginator/Status.html">– Status</a>
+              </li>
+            </ul>
+          </li>
+        </ul>
+      </nav>
+      <article class="main-content">
+        <section>
+          <section class="section">
+            <h1>ListPaginator</h1>
+              <div class="declaration">
+                <div class="language">
+                  
+                  <pre class="highlight swift"><code><span class="kd">public</span> <span class="kd">final</span> <span class="kd">class</span> <span class="kt">ListPaginator</span><span class="o">&lt;</span><span class="kt">Response</span><span class="p">,</span> <span class="kt">Item</span><span class="o">&gt;</span> <span class="p">:</span> <span class="kt">ObservableObject</span> <span class="k">where</span> <span class="kt">Response</span> <span class="p">:</span> <span class="kt">Decodable</span></code></pre>
+
+                </div>
+              </div>
+            <p>ListPaginator simplifies the fetching and state management for lists of data populated from a paginated endpoint. It&rsquo;s main aims are to maintain correct page offsets, fetch statuses and retain responses from paginated API endpoints.</p>
+
+<p>Implementation typically looks as follows:</p>
+
+<ol>
+<li>Instantiate and retain an instance, defining the <code>Response</code> and <code>Item</code> generic types. The main initializer also takes a <code>PagingStrategy</code> object which defines the behavior of your API and a keypath which shows <code>ListPaginator</code> where to find your <code>Item</code>s within the defined <code>Response</code> object.</li>
+<li>Tell <code>ListPaginator</code> how to fetch results by assigning its <code>requestProvider: RequestProvider</code> property. You can provide a standard closure or, for Combine-driven applications, a publisher which performs the appropriate network operation based on the page or offset number provided.</li>
+<li>Call <code>fetchMoreIfNeeded.send()</code> or bind to the publisher when the client wants to fetch new data. This is typically called when the user scrolls near the end of a collection or table view.</li>
+<li>For SwiftUI and Combine-driven applications, bind your UI to the <code>results: [item]</code> publisher. For other implementations, assign a closure to the <code>completionHandler</code> property and refresh your view as necessary.</li>
+</ol>
+
+<p>Integration via either standard Swift closures and Combine publishers is possible. The <code>results: [Item]</code> array contains all objects fetched so-far and is marked as <code>@Published</code> for integration with SwiftUI. The <code>Status</code> property indicates the current pagination status the instance is in and is also <code>@Published</code>.</p>
+
+              <div>
+                <h4>Parameters</h4>
+                <table class="graybox">
+                  <tbody>
+                      <tr>
+                        <td>
+                          <code>
+                          <em>Response</em>
+                          </code>
+                        </td>
+                        <td>
+                          <div>
+                            <p>A <code>Decodable</code> object type which is fetched from the server and contains the array of items.</p>
+                          </div>
+                        </td>
+                      </tr>
+                      <tr>
+                        <td>
+                          <code>
+                          <em>Item</em>
+                          </code>
+                        </td>
+                        <td>
+                          <div>
+                            <p>The object type of the items to be paginated.</p>
+                          </div>
+                        </td>
+                      </tr>
+                  </tbody>
+                </table>
+              </div>
+          </section>
+          <section class="section task-group-section">
+            <div class="task-group">
+              <ul>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:13ListPaginatorAAC14PagingStrategyO"></a>
+                    <a name="//apple_ref/swift/Enum/PagingStrategy" class="dashAnchor"></a>
+                    <a class="token" href="#/s:13ListPaginatorAAC14PagingStrategyO">PagingStrategy</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>Defines how the paginator should generate page numbers for building network requests. This will be based on how the target API works with paging.</p>
+
+                        <a href="../Classes/ListPaginator/PagingStrategy.html" class="slightly-smaller">See more</a>
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight swift"><code><span class="kd">public</span> <span class="kd">enum</span> <span class="kt">PagingStrategy</span></code></pre>
+
+                        </div>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:13ListPaginatorAAC15RequestProviderO"></a>
+                    <a name="//apple_ref/swift/Enum/RequestProvider" class="dashAnchor"></a>
+                    <a class="token" href="#/s:13ListPaginatorAAC15RequestProviderO">RequestProvider</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>Allows the client to choose between using a Combine publisher or a simple closure for fetching new pages of data.</p>
+
+                        <a href="../Classes/ListPaginator/RequestProvider.html" class="slightly-smaller">See more</a>
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight swift"><code><span class="kd">public</span> <span class="kd">enum</span> <span class="kt">RequestProvider</span></code></pre>
+
+                        </div>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:13ListPaginatorAAC6StatusO"></a>
+                    <a name="//apple_ref/swift/Enum/Status" class="dashAnchor"></a>
+                    <a class="token" href="#/s:13ListPaginatorAAC6StatusO">Status</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>Tracks the current pagination status. Is used internally for blocking duplicate requests but this may also be observed to display progress indicators and error messages within the client application.</p>
+
+                        <a href="../Classes/ListPaginator/Status.html" class="slightly-smaller">See more</a>
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight swift"><code><span class="kd">public</span> <span class="kd">enum</span> <span class="kt">Status</span></code></pre>
+
+                        </div>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:13ListPaginatorAAC7resultsSayq_Gvp"></a>
+                    <a name="//apple_ref/swift/Property/results" class="dashAnchor"></a>
+                    <a class="token" href="#/s:13ListPaginatorAAC7resultsSayq_Gvp">results</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>An array of view-ready <code>Item</code>s. Observable.</p>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight swift"><code><span class="kd">@Published</span>
+<span class="kd">public</span> <span class="kd">private(set)</span> <span class="k">var</span> <span class="nv">results</span><span class="p">:</span> <span class="p">[</span><span class="kt">Item</span><span class="p">]</span> <span class="p">{</span> <span class="k">get</span> <span class="k">set</span> <span class="p">}</span></code></pre>
+
+                        </div>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:13ListPaginatorAAC6statusAB6StatusOyxq__Gvp"></a>
+                    <a name="//apple_ref/swift/Property/status" class="dashAnchor"></a>
+                    <a class="token" href="#/s:13ListPaginatorAAC6statusAB6StatusOyxq__Gvp">status</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>The current pagination status. Observable.</p>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight swift"><code><span class="kd">@Published</span>
+<span class="kd">public</span> <span class="kd">private(set)</span> <span class="k">var</span> <span class="nv">status</span><span class="p">:</span> <span class="kt"><a href="../Classes/ListPaginator/Status.html">Status</a></span> <span class="p">{</span> <span class="k">get</span> <span class="k">set</span> <span class="p">}</span></code></pre>
+
+                        </div>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:13ListPaginatorAAC17completionHandlerys6ResultOyxs5Error_pGcSgvp"></a>
+                    <a name="//apple_ref/swift/Property/completionHandler" class="dashAnchor"></a>
+                    <a class="token" href="#/s:13ListPaginatorAAC17completionHandlerys6ResultOyxs5Error_pGcSgvp">completionHandler</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>An optional closure called after each page&rsquo;s request is made. Non-Combine implementations which choose not to make use of the @Published attributes of <code><a href="../Classes/ListPaginator.html#/s:13ListPaginatorAAC7resultsSayq_Gvp">results</a></code> and <code><a href="../Classes/ListPaginator.html#/s:13ListPaginatorAAC6statusAB6StatusOyxq__Gvp">status</a></code> may prefer to use this system for updating the client&rsquo;s UI.</p>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight swift"><code><span class="kd">public</span> <span class="k">var</span> <span class="nv">completionHandler</span><span class="p">:</span> <span class="p">((</span><span class="kt">Result</span><span class="o">&lt;</span><span class="kt">Response</span><span class="p">,</span> <span class="kt">Error</span><span class="o">&gt;</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kt">Void</span><span class="p">)?</span></code></pre>
+
+                        </div>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:13ListPaginatorAAC17fetchMoreIfNeeded7Combine18PassthroughSubjectCyyts5NeverOGvp"></a>
+                    <a name="//apple_ref/swift/Property/fetchMoreIfNeeded" class="dashAnchor"></a>
+                    <a class="token" href="#/s:13ListPaginatorAAC17fetchMoreIfNeeded7Combine18PassthroughSubjectCyyts5NeverOGvp">fetchMoreIfNeeded</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>A passthrough subject which should be triggered when new data is to be fetched. Typically you will call <code>fetchMoreIfNeeded.send()</code> when users scroll near the bottom of paginated content.</p>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight swift"><code><span class="kd">public</span> <span class="k">let</span> <span class="nv">fetchMoreIfNeeded</span><span class="p">:</span> <span class="kt">PassthroughSubject</span><span class="o">&lt;</span><span class="kt">Void</span><span class="p">,</span> <span class="kt">Never</span><span class="o">&gt;</span></code></pre>
+
+                        </div>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:13ListPaginatorAAC15requestProviderAB07RequestD0Oyxq__GSgvp"></a>
+                    <a name="//apple_ref/swift/Property/requestProvider" class="dashAnchor"></a>
+                    <a class="token" href="#/s:13ListPaginatorAAC15requestProviderAB07RequestD0Oyxq__GSgvp">requestProvider</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>A property which defines how the client application will provide data for ListPaginator to consume. ListPaginator currently supports network requests via either a Combine publisher or a simple Swift closure. Both are expected to return a Swift <code>Result</code> with the success data type matching this class&rsquo;s generic <code>Response</code> type. See the <code><a href="../Classes/ListPaginator/RequestProvider.html">RequestProvider</a></code> documentation for more details.</p>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight swift"><code><span class="kd">public</span> <span class="k">var</span> <span class="nv">requestProvider</span><span class="p">:</span> <span class="kt"><a href="../Classes/ListPaginator/RequestProvider.html">RequestProvider</a></span><span class="p">?</span></code></pre>
+
+                        </div>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:13ListPaginatorAAC8strategy20responseItemsKeyPathAByxq_GAB14PagingStrategyOyxq__G_s0fG0CyxSayq_GGtcfc"></a>
+                    <a name="//apple_ref/swift/Method/init(strategy:responseItemsKeyPath:)" class="dashAnchor"></a>
+                    <a class="token" href="#/s:13ListPaginatorAAC8strategy20responseItemsKeyPathAByxq_GAB14PagingStrategyOyxq__G_s0fG0CyxSayq_GGtcfc">init(strategy:<wbr>responseItemsKeyPath:<wbr>)</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>Initializer for <code>ListPaginator</code>. Provide it with the <code><a href="../Classes/ListPaginator/PagingStrategy.html">PagingStrategy</a></code> used by your application and the property keypath where your <code>Item</code>s can be found within each <code>Response</code>.</p>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight swift"><code><span class="kd">public</span> <span class="nf">init</span><span class="p">(</span><span class="nv">strategy</span><span class="p">:</span> <span class="kt"><a href="../Classes/ListPaginator/PagingStrategy.html">PagingStrategy</a></span><span class="p">,</span> <span class="nv">responseItemsKeyPath</span><span class="p">:</span> <span class="kt">KeyPath</span><span class="o">&lt;</span><span class="kt">Response</span><span class="p">,</span> <span class="p">[</span><span class="kt">Item</span><span class="p">]</span><span class="o">&gt;</span><span class="p">)</span></code></pre>
+
+                        </div>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:13ListPaginatorAAC5resetyyF"></a>
+                    <a name="//apple_ref/swift/Method/reset()" class="dashAnchor"></a>
+                    <a class="token" href="#/s:13ListPaginatorAAC5resetyyF">reset()</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>Removes all results and resets the status and pagination offsets.</p>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight swift"><code><span class="kd">public</span> <span class="kd">func</span> <span class="nf">reset</span><span class="p">()</span></code></pre>
+
+                        </div>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+              </ul>
+            </div>
+          </section>
+        </section>
+        <section id="footer">
+          <p>&copy; 2021 <a class="link" href="https://github.com/davefoxy/ListPaginator" target="_blank" rel="external">David Fox</a>. All rights reserved. (Last updated: 2021-05-05)</p>
+          <p>Generated by <a class="link" href="https://github.com/realm/jazzy" target="_blank" rel="external">jazzy ♪♫ v0.13.6</a>, a <a class="link" href="https://realm.io" target="_blank" rel="external">Realm</a> project.</p>
+        </section>
+      </article>
+    </div>
+  </body>
+</div>
+</html>
