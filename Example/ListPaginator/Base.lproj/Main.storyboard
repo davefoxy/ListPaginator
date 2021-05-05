@@ -8,7 +8,7 @@
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
-        <!--Item 2-->
+        <!--UIKit-->
         <scene sceneID="ltI-bG-HYI">
             <objects>
                 <viewController id="2f4-dj-w2f" customClass="UIKitExampleViewController" customModule="ListPaginator_Example" customModuleProvider="target" sceneMemberID="viewController">
@@ -75,7 +75,7 @@
                             <constraint firstItem="uif-oC-p91" firstAttribute="top" secondItem="B8R-nT-cIS" secondAttribute="bottom" id="zst-1p-Z9I"/>
                         </constraints>
                     </view>
-                    <tabBarItem key="tabBarItem" title="Item 2" id="am6-4G-rVU"/>
+                    <tabBarItem key="tabBarItem" title="UIKit" id="am6-4G-rVU"/>
                     <connections>
                         <outlet property="retryButton" destination="Ewq-wj-DAU" id="L65-2w-YU9"/>
                         <outlet property="tableView" destination="vs2-qW-u0N" id="6hr-em-zAS"/>
@@ -85,7 +85,7 @@
             </objects>
             <point key="canvasLocation" x="-978.39999999999998" y="219.04047976011995"/>
         </scene>
-        <!--Item 1-->
+        <!--SwiftUI-->
         <scene sceneID="R5J-Sd-eEQ">
             <objects>
                 <viewController id="y8z-pA-1pQ" customClass="SwiftUIExampleViewController" customModule="ListPaginator_Example" customModuleProvider="target" sceneMemberID="viewController">
@@ -98,13 +98,13 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                     </view>
-                    <tabBarItem key="tabBarItem" title="Item 1" id="ugQ-BA-FZ0"/>
+                    <tabBarItem key="tabBarItem" title="SwiftUI" id="ugQ-BA-FZ0"/>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="6Ix-90-3UY" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="-978" y="-449"/>
         </scene>
-        <!--Item-->
+        <!--Debug-->
         <scene sceneID="Vze-Ea-EFg">
             <objects>
                 <viewController id="WvR-8c-nIo" customClass="DebugViewController" customModule="ListPaginator_Example" customModuleProvider="target" sceneMemberID="viewController">
@@ -143,7 +143,7 @@
                             <constraint firstItem="Rhe-5c-fcz" firstAttribute="centerY" secondItem="MFc-JV-ffM" secondAttribute="centerY" id="HkY-Xf-5SC"/>
                         </constraints>
                     </view>
-                    <tabBarItem key="tabBarItem" title="Item" id="t58-Bs-KAM"/>
+                    <tabBarItem key="tabBarItem" title="Debug" id="t58-Bs-KAM"/>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="3Nl-Mf-TZj" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
