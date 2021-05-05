@@ -4,7 +4,9 @@
 [![License](https://img.shields.io/cocoapods/l/ListPaginator.svg?style=flat)](https://cocoapods.org/pods/ListPaginator)
 [![Platform](https://img.shields.io/cocoapods/p/ListPaginator.svg?style=flat)](https://cocoapods.org/pods/ListPaginator)
 
-ListPaginator simplifies the fetching and state management for lists of data populated from a paginated endpoint. It's main aims are to maintain correct page offsets, fetch statuses and retain responses from paginated API endpoints.
+ListPaginator simplifies the fetching and state management for lists of data populated from a paginated endpoint. Its main aims are to maintain correct page offsets, fetch statuses and retain responses from paginated API endpoints.
+
+It's fully documented so if any properties aren't making sense, please make sure to [read the docs!](). 
 
 ## Usage
 
@@ -28,7 +30,7 @@ struct Product: Decodable {
 }
 ```
 
-Our sample manages pagination by taking an incrementing page index.
+Our imaginary API endpoint manages pagination by taking an incrementing page index.
 
 We instantiate ListPaginator, informing it of the root `Shop` response type and the individual item types (in this case, `Product`) and which property within `Shop` to find our `Product`s like so:
 
@@ -49,8 +51,7 @@ When the user scrolls near the end of your content, trigger the paginator's `fet
 ## Example
 
 To run the example project, clone the repo, and run `pod install` from the Example directory first.
-
-## Requirements
+The demo application shows usage for both Combine/SwiftUI and UIKit-based applications. 
 
 ## Installation
 
@@ -61,9 +62,14 @@ it, simply add the following line to your Podfile:
 pod 'ListPaginator'
 ```
 
+## Acknowledgements
+
+- The sample application uses dummy data from [instantwebtools.net](https://api.instantwebtools.net)
+
 ## Author
 
-David Fox
+[David Fox](https://github.com/davefoxy/)
+
 
 ## License
 
