@@ -8,8 +8,8 @@ class SwiftUIExampleViewController: UIViewController, ExampleViewController {
         super.viewDidLoad()
         
         let hostingController = UIHostingController(rootView: exampleView)
-        addChildViewController(hostingController)
-        hostingController.didMove(toParentViewController: self)
+        addChild(hostingController)
+        hostingController.didMove(toParent: self)
         view.addSubview(hostingController.view)
         
         hostingController.view.translatesAutoresizingMaskIntoConstraints = false
