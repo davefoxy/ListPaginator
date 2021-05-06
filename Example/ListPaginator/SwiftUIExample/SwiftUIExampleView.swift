@@ -2,11 +2,11 @@ import SwiftUI
 import ListPaginator
 
 struct SwiftUIExampleView: View {
-    @ObservedObject var paginator = ListPaginator<PassengersResponse, Passenger>(strategy: .pageIndex(startingFrom: 1), responseItemsKeyPath: \.passengers)
+    @ObservedObject var paginator = ListPaginator<Repositories, Repository>(strategy: .pageIndex(startingFrom: 1), responseItemsKeyPath: \.repositories)
     
     init() {
         paginator.requestProvider = .publisher({ page in
-            return PassengersRequest(page: page).request
+            return RepositoriesRequest(page: page).request
         })
     }
     
@@ -32,7 +32,7 @@ struct SwiftUIExampleView: View {
         }
     }
     
-    private func shouldPaginate(for result: Passenger) -> Bool {
+    private func shouldPaginate(for result: Repository) -> Bool {
         return result.id == paginator.results[paginator.results.count - 3].id && paginator.status.error == nil
     }
 }

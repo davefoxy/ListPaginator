@@ -10,7 +10,7 @@
 		1895F8FD7A26193340F41C10 /* Pods_ListPaginator_Tests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 00967ABC36408A71A4C3DE4D /* Pods_ListPaginator_Tests.framework */; };
 		52715267263784B90024155A /* UIKitExampleViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52715266263784B90024155A /* UIKitExampleViewController.swift */; };
 		5271526D2637854A0024155A /* SwiftUIExampleView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5271526C2637854A0024155A /* SwiftUIExampleView.swift */; };
-		52715274263786660024155A /* PassengersRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52715271263786660024155A /* PassengersRequest.swift */; };
+		52715274263786660024155A /* RepositoriesRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52715271263786660024155A /* RepositoriesRequest.swift */; };
 		52715275263786660024155A /* Request.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52715272263786660024155A /* Request.swift */; };
 		5271527A263786A00024155A /* Utilities.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52715279263786A00024155A /* Utilities.swift */; };
 		52715288263AA4050024155A /* DebugViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52715287263AA4050024155A /* DebugViewController.swift */; };
@@ -41,7 +41,7 @@
 		2D59A406CBF879BB7F2C27CB /* Pods-ListPaginator_Example.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ListPaginator_Example.release.xcconfig"; path = "Target Support Files/Pods-ListPaginator_Example/Pods-ListPaginator_Example.release.xcconfig"; sourceTree = "<group>"; };
 		52715266263784B90024155A /* UIKitExampleViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIKitExampleViewController.swift; sourceTree = "<group>"; };
 		5271526C2637854A0024155A /* SwiftUIExampleView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SwiftUIExampleView.swift; sourceTree = "<group>"; };
-		52715271263786660024155A /* PassengersRequest.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PassengersRequest.swift; sourceTree = "<group>"; };
+		52715271263786660024155A /* RepositoriesRequest.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RepositoriesRequest.swift; sourceTree = "<group>"; };
 		52715272263786660024155A /* Request.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Request.swift; sourceTree = "<group>"; };
 		52715279263786A00024155A /* Utilities.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Utilities.swift; sourceTree = "<group>"; };
 		52715287263AA4050024155A /* DebugViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DebugViewController.swift; sourceTree = "<group>"; };
@@ -84,7 +84,7 @@
 		52715270263786660024155A /* API */ = {
 			isa = PBXGroup;
 			children = (
-				52715271263786660024155A /* PassengersRequest.swift */,
+				52715271263786660024155A /* RepositoriesRequest.swift */,
 				52715272263786660024155A /* Request.swift */,
 			);
 			path = API;
@@ -380,7 +380,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				52715274263786660024155A /* PassengersRequest.swift in Sources */,
+				52715274263786660024155A /* RepositoriesRequest.swift in Sources */,
 				52715275263786660024155A /* Request.swift in Sources */,
 				52715288263AA4050024155A /* DebugViewController.swift in Sources */,
 				52715267263784B90024155A /* UIKitExampleViewController.swift in Sources */,

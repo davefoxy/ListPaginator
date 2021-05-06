@@ -6,7 +6,7 @@ final class UIKitExampleViewController: UIViewController, ExampleViewController 
     @IBOutlet private var tableView: UITableView!
     @IBOutlet private var retryButton: UIButton!
 
-    let paginator = ListPaginator<PassengersResponse, Passenger>(strategy: .pageIndex(startingFrom: 1), responseItemsKeyPath: \.passengers)
+    let paginator = ListPaginator<Repositories, Repository>(strategy: .pageIndex(startingFrom: 1), responseItemsKeyPath: \.repositories)
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -14,7 +14,7 @@ final class UIKitExampleViewController: UIViewController, ExampleViewController 
         retryButton.isHidden = true
 
         paginator.requestProvider = .closure({ page, completion in
-            PassengersRequest(page: page).performRequest(completion: completion)
+            RepositoriesRequest(page: page).performRequest(completion: completion)
         })
         paginator.completionHandler = { _ in
             self.retryButton.isHidden = self.paginator.status.error == nil

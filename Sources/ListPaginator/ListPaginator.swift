@@ -110,6 +110,7 @@ public final class ListPaginator<Response: Decodable, Item>: ObservableObject {
     public init(strategy: PagingStrategy, responseItemsKeyPath: KeyPath<Response, [Item]>) {
         self.strategy = strategy
         self.responseItemsKeyPath = responseItemsKeyPath
+        nextOffset = strategy.initialOffset
 
         fetchCancellable = fetchMoreIfNeeded
             .filter { self.status.mayFetchMore }
