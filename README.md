@@ -12,6 +12,8 @@ It's fully documented so if any properties aren't making sense, please make sure
 
 > TL;DR: Check out the sample application contained within and just copy/paste it 😉
 
+### Preparing Datasources and ListPaginator's Configuration
+
 ListPaginator requires the following information to work correctly...
 
 - A way to fetch data given the current page or item offset.
@@ -46,7 +48,13 @@ paginator.requestProvider = .closure({ page, completion in
 })
 ```
 
-When the user scrolls near the end of your content, trigger the paginator's `fetchMoreIfNeeded` publisher either via a Combine operation or directly by calling `paginator.fetchmoreIfNeeded.send()`.
+### Populating SwiftUI Views and Table/Collection Views
+
+Your data is accessible via ListPaginator's `results: [Item]` array. It uses generics to vend items in the object type defined during instantiation. A UIKit application's table/collection view datasource methods can return its `count` and objects for configuration. SwiftUI applications can iterate over it in a number of different ways such as via a `ForEach`, a `List` backing store etc.
+
+### Fetching New Pages
+
+When the user scrolls near the end of your content, trigger the paginator's `fetchMoreIfNeeded` publisher either via a Combine operation or directly by calling `paginator.fetchmoreIfNeeded.send()`. Check out the following example application for how this can be achieved in either a SwiftUI or UIKit-driven application.
 
 ## Example
 
