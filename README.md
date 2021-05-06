@@ -59,7 +59,11 @@ When the user scrolls near the end of your content, trigger the paginator's `fet
 ## Example
 
 To run the example project, clone the repo, and run `pod install` from the Example directory first.
-The demo application shows usage for both Combine/SwiftUI and UIKit-based applications. 
+The demo application shows usage for both Combine/SwiftUI and UIKit-based applications.
+
+## TODOs
+
+- [ ] Add support for cursor-based endpoints. Not a difficult task but proving a little hard to maintain an easy-to-understand and integrate API with both `String?` and `Int` typed inputs 🤔s
 
 ## Installation
 
