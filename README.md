@@ -63,7 +63,7 @@ The demo application shows usage for both Combine/SwiftUI and UIKit-based applic
 
 ## TODOs
 
-- [ ] Add support for cursor-based endpoints. Not a difficult task but proving a little hard to maintain an easy-to-understand and integrate API with both `String?` and `Int` typed inputs 🤔s
+- [ ] Add support for cursor-based endpoints. Not a difficult task but requires a bit more thought in order to maintain an easy-to-understand and integrate API with both `String?` and `Int` typed inputs and outputs 🤔
 
 ## Installation
 
