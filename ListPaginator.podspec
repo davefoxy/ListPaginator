@@ -8,7 +8,7 @@
 
 Pod::Spec.new do |s|
   s.name             = 'ListPaginator'
-  s.version          = '1.0.0'
+  s.version          = '1.0.2'
   s.summary          = 'ListPaginator simplifies the fetching and state management for lists of data populated from a paginated endpoint.'
 
 # This description is used to generate tags and improve search results.
