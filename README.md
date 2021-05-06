@@ -68,10 +68,6 @@ pod 'ListPaginator'
 
 You can integrate ListPaginator via SPM. Within Xcode, choose "File" -> "Swift Packages" -> "Add Package Dependency" and paste in this repo's URL: https://github.com/davefoxy/ListPaginator
 
-## Acknowledgements
-
-- The sample application uses dummy data from [instantwebtools.net](https://api.instantwebtools.net)
-
 ## Author
 
 [David Fox](https://github.com/davefoxy/)
